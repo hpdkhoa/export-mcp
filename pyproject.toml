@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "export-mcp"
+version = "0.1.0"
+description = "An MCP server and command line that turn card statement PDFs and payment emails (.eml, .mbox, Gmail) into one Excel table."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Khoa Hoang" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "pdf", "excel", "gmail", "bank-statement", "shopee"]
+dependencies = [
+    "mcp>=2.0,<3",
+    "pdfplumber>=0.11",
+    "openpyxl>=3.1",
+    "google-api-python-client>=2.100",
+    "google-auth-oauthlib>=1.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/hpdkhoa/export-mcp"
+Issues = "https://github.com/hpdkhoa/export-mcp/issues"
+
+[project.scripts]
+export-mcp = "export_mcp.__main__:main"
+export-mcp-server = "export_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/export_mcp"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
